@@ -1,0 +1,217 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.IO;
+using System.Xml.Linq;
+
+namespace Challenge_3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // this will keep the track of the users.
+            int userCount = 0;
+            // object array of user data
+            Muser[] users = new Muser[30];
+            // this function loads the data from the file
+            retrieveFile(users, ref userCount);
+
+            while (true) 
+            { 
+                // this function clears the screen and prints the header
+                clearScreen();
+                string choice = menu();// this prints the menu of sign in or sign up
+                if(choice == "1")
+                {
+                    Console.Clear();
+                    string username="", password="";
+                    signInWindow(ref username,ref password); // this displays the sign in menu
+
+                    if(checkUsername(users,username,password)) //  this verfies if the user exist
+                    {
+                        int index = finduserIndex(users, username, password); // this finds the index of the existing user
+                        Welcome(users, index);
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("User does not exist...");
+                        Thread.Sleep(200);
+                    }
+                    // this function returns the user to the previous screen
+                    returnforAll();
+
+                }
+                else if (choice == "2") 
+                {
+                    Console.Clear();
+                    users[userCount] = getDetails(); // this function get details and that is stored with users class
+                    Console.WriteLine("Signed in Successfully...");
+                    returnforAll();
+                    userCount++; // this increases the user count
+                }
+                else if (choice == "3")
+                {
+                    SaveinFile(users, userCount); // this function saves the data into the files
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect Input..");
+                    Thread.Sleep(200);
+                }
+            }
+        }
+
+        static bool checkUsername(Muser[] users, string username, string password) // this verifies the usernamwe
+        {
+            for(int i=0; i<30; i++)
+            {
+                if (username == users[i].username && password == users[i].password)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        static void Welcome(Muser[] users, int index) // this displays welcome
+        {
+            if (users[index].role == "Customer" || users[index].role == "customer")
+            {
+                Console.WriteLine("Welcome Our Dear Customer.");
+            }
+            else if (users[index].role == "Employee" || users[index].role == "employee")
+            {
+                Console.WriteLine("Welcome Our Dear Employee.");
+            }
+        }
+
+        static int finduserIndex(Muser[] users, string username, string password) // it finds the user index
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                if (username == users[i].username && password == users[i].password)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        static void signInWindow(ref string username, ref string password) // it displays the sign in menu and takes the input
+        {
+            Console.WriteLine("-----------Sign In Menu--------------");
+            Console.WriteLine();
+            Console.Write("Enter Username: ");
+            username = Console.ReadLine();
+            Console.Write("Enter Password: ");
+            password = Console.ReadLine();
+        }
+
+        static Muser getDetails()   // it displays the sign up menu and takes the details
+        {
+            Muser user = new Muser();
+            Console.WriteLine("-----------Sign Up Menu-------------");
+            Console.WriteLine();
+            Console.Write("Enter Username: ");
+            user.username = Console.ReadLine();
+            Console.Write("Enter Password: ");
+            user.password = Console.ReadLine();
+            Console.Write("Enter your Role (Employee or Customer): ");
+            user.role = Console.ReadLine();
+            Console.WriteLine() ;
+            return user;
+
+        }
+           
+
+        static void returnforAll() //this is used as a return function for all functions
+        {
+            Console.WriteLine();
+            Console.Write("Press any key to return...");
+            Console.Read();
+        }
+
+        static void clearScreen()
+        {
+            Console.Clear();
+            Console.WriteLine("-----------Sign In Or Sign Up Menu-------------");
+            Console.WriteLine();
+
+        }
+
+        static string menu() // this prints the menu
+        {
+            Console.WriteLine("1. Sign IN");
+            Console.WriteLine("2. Sign UP");
+            Console.WriteLine("3. Exit");
+            Console.Write("Enter your Choice: ");
+            string choice = Console.ReadLine();
+            return choice;
+        }
+
+        static void SaveinFile(Muser[] users, int usercount) // it saves in file
+        {
+            string filepath = "C:\\Users\\musno\\OneDrive\\Documents\\Myfile.txt";
+            StreamWriter file = new StreamWriter(filepath, false);
+            for(int i=0; i<usercount; i++)
+            {
+                file.WriteLine(users[i].username + "," + users[i].password + "," + users[i].role);
+                file.Flush();
+                
+            }
+            file.Close();
+        }
+
+        static void retrieveFile(Muser[] users,ref int userCount) // it retrieves info from the file
+        {
+            string filepath = "C:\\Users\\musno\\OneDrive\\Documents\\Myfile.txt";
+            if(File.Exists(filepath))
+            {
+                StreamReader file = new StreamReader(filepath);
+                string record;
+                while((record = file.ReadLine()) != null)
+                {
+                    users[userCount] = new Muser();
+                    users[userCount].username = parsedata(record, 1);
+                    users[userCount].password = parsedata(record, 2);
+                    users[userCount].role = parsedata(record, 3);
+                    userCount++;
+                }
+            }
+        }
+
+        static string parsedata(string record, int field) // it is to break section from each line of the file
+        {
+            int comma = 1;
+            string item = "";
+            for(int x=0; x<record.Length; x++)
+            {
+                if (record[x]==',')
+                {
+                    comma++;
+                }
+                else if(comma==field)
+                {
+                    item += record[x];
+                }
+            }
+            return item;
+        }
+
+    }
+
+    
+
+    internal class Muser
+    {
+        public string username;
+        public string password;
+        public string role;
+    }
+}
