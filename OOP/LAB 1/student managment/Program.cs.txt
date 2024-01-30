@@ -1,0 +1,305 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Diagnostics.Eventing.Reader;
+using System.Runtime.ExceptionServices;
+
+namespace Challenge_1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string name = "";
+            float matricMarks = 0, fscMarks = 0, ecatMarks = 0, aggregate = 0; // these are temporary variables which are passed by reference
+            int studentCounter = 0; // this keep counts of the students
+            bool checkforAggregate=false;
+            Student[] studentDetails = new Student[30]; // initialize an array of the students
+            float[] sortedArrayOfAggregate = new float[30]; // it is a temp array used for sorting the aggregate
+
+
+            while (true)
+            {
+                clearScreen();
+                string choice = menu();
+                if (choice == "1")
+                {
+                    clearScreen();
+                    takeInput(ref name, ref matricMarks, ref fscMarks, ref ecatMarks); // this functions takes the input
+                    studentDetails[studentCounter] = new Student(name, matricMarks, fscMarks, ecatMarks); // this stores them in object array by passing these variables in the constructor
+                    studentCounter++; // this increments the student count
+                    checkforAggregate = false;
+                    returnforAll();
+                    Thread.Sleep(100);
+                }
+                else if (choice == "2")
+                {
+                    clearScreen();
+                    if (studentCounter == 0)
+                    {
+                        Console.WriteLine("There are no Students yet..");
+
+                    }
+                    else
+                    {
+                        showStudents(studentDetails, studentCounter); // this shows the students detail
+                    }
+                    returnforAll();
+
+                }
+                else if (choice == "3")
+                {
+                    checkforAggregate = true; // this identifies if the aggregate has been calculated or not
+                    clearScreen();
+                    if (studentCounter == 0)
+                    {
+                        Console.WriteLine("There are no Students yet..");
+
+                    }
+                    else
+                    {
+                        for (int i = 0; i < studentCounter; i++)
+                        {
+                            studentDetails[i].aggregate = calculateAggregate(studentDetails[i].matricMarks, studentDetails[i].fscMarks, studentDetails[i].ecatMarks);
+                        }
+
+                        showAggregate(studentDetails, studentCounter);
+                    }
+                    returnforAll();
+
+                }
+                else if (choice == "4")
+                {
+
+                    clearScreen();
+                    if (checkforAggregate)
+                    {
+                        if (studentCounter < 3)
+                        {
+
+                            Console.WriteLine("There Should be More than 3 students.");
+                        }
+                        else
+                        {
+                            // this transfer the aggregate of students in the temp array
+                            TransferofAggregateInArray(sortedArrayOfAggregate, studentDetails, studentCounter);
+                            // the temp array is then sorted in descending order
+                            SortDescending(sortedArrayOfAggregate, studentCounter);
+                            int first, second, third;
+                            first = indexOfFirst(sortedArrayOfAggregate[0], studentDetails, studentCounter); // this finds the index of the highest aggregate
+                            second = indexOfFirst(sortedArrayOfAggregate[1], studentDetails, studentCounter);// this finds the index of the second highest aggregate
+                            third = indexOfFirst(sortedArrayOfAggregate[2], studentDetails, studentCounter);// this finds the index of the third highest aggregate
+
+                            DisplayPositionHolders(studentDetails, first, second, third);
+
+                        }
+                    }  
+                    else
+                    {
+                        Console.WriteLine("Calculate Aggregate First...");
+                    }
+                    returnforAll();
+                }
+                else if (choice == "5")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect Input...");
+                    Thread.Sleep(200);
+                    
+                }
+                
+            }
+        }
+        // it takes the details of the student
+        static void takeInput(ref string name, ref float matricMarks, ref float fscMarks, ref float ecatMarks)
+        {
+            Console.Write("Enter the student's name: ");
+            name = Console.ReadLine();
+            Console.Write("Enter Matric marks: ");
+            matricMarks = float.Parse(Console.ReadLine());
+            Console.Write("Enter Fsc marks: ");
+            fscMarks = float.Parse(Console.ReadLine());
+            Console.Write("Enter ECAT marks: ");
+            ecatMarks = float.Parse(Console.ReadLine());
+
+        }
+
+        // this displays the info of the students
+
+        static void showStudents(Student[] studentDetails, int studentCounter)
+        {
+
+
+            Console.WriteLine("Index \t\t Name \t\t Matric Marks \t\t Fsc Marks \t\t ECAT Marks");
+            for (int i = 0; i < studentCounter; i++)
+            {
+                Console.WriteLine(i + 1 + "\t\t" + studentDetails[i].sname + "\t\t\t" + studentDetails[i].matricMarks + "\t\t\t" + studentDetails[i].fscMarks + "\t\t\t" + studentDetails[i].ecatMarks);
+            }
+
+        }
+
+        // it calculates the aggregate
+        static float calculateAggregate(float matricMarks, float fscMarks, float ecatMarks)
+        {
+            
+            
+                float aggregate = 0;
+                aggregate = ((0.25F * matricMarks / 1100) + (0.45F * fscMarks / 1100) + (0.30f * ecatMarks / 400))*100;
+                return aggregate;
+            
+
+        }
+
+        // it shows the aggregate
+        static void showAggregate(Student[] studentDetails, int studentCounter)
+        {
+            Console.WriteLine("Index \t\t Name \t\t Aggegrate");
+            for (int i = 0; i < studentCounter; i++)
+            {
+                Console.WriteLine(i + 1 + "\t\t" + studentDetails[i].sname + "\t\t\t" + studentDetails[i].aggregate);
+            }
+        }
+
+        // it displays the menu
+        static string menu()
+        {
+            Console.WriteLine("1. Add Student");
+            Console.WriteLine("2. Show Students");
+            Console.WriteLine("3. Calculate Aggregate");
+            Console.WriteLine("4. Top Students");
+            Console.WriteLine("5. Exit");
+            Console.Write("Enter your Choice: ");
+            string choice = Console.ReadLine();
+            return choice;
+        }
+
+
+        static void returnforAll() //this is used as a return function for all functions
+        {
+            Console.WriteLine();
+            Console.Write("Press any key to return...");
+            Console.Read();
+        }
+
+        static void clearScreen()
+        {
+            Console.Clear();
+            Console.WriteLine("-----------Student Management System-------------");
+            Console.WriteLine();
+
+        }
+        // it tranfers the aggregate of each student in a temporary array
+        static void TransferofAggregateInArray(float[] sortedArrayOfAggregate, Student[] studentDetails, int studentCounter)
+        {
+            for(int i=0; i<studentCounter; i++)
+            {
+                sortedArrayOfAggregate[i] = studentDetails[i].aggregate;
+            }
+        }
+
+        // that array is then sorted in descending order
+        static void SortDescending(float[] sortedArrayOfAggregate, int studentcounter)
+        {
+            for (int i = 0; i < studentcounter - 1; i++)
+            {
+                // Find the maximum element in the unsorted portion of the array
+                int maxIndex = i;
+                for (int j = i + 1; j < studentcounter; j++)
+                {
+                    if (sortedArrayOfAggregate[j] > sortedArrayOfAggregate[maxIndex])
+                    {
+                        maxIndex = j;
+                    }
+                }
+                // Swap the maximum element with the current element
+                float temp = sortedArrayOfAggregate[i];
+                sortedArrayOfAggregate[i] = sortedArrayOfAggregate[maxIndex];
+                sortedArrayOfAggregate[maxIndex] = temp;
+            }
+
+
+        }
+        
+        // these finds the index of the first, second and third
+        static int indexOfFirst(float highestAggregate, Student[] studentDetails, int studentCounter)
+        {
+            int index = 0;
+            for(int i=0; i<studentCounter; i++)
+            {
+                if(highestAggregate == studentDetails[i].aggregate)
+                {
+                    index = i;
+                }
+            }
+            return index;
+            
+        }
+        static int indexOfSecond(float SecondAggregate, Student[] studentDetails, int studentCounter)
+        {
+            int index = 0;
+            for (int i = 0; i < studentCounter; i++)
+            {
+                if (SecondAggregate == studentDetails[i].aggregate)
+                {
+                    index = i;
+                }
+            }
+            return index;
+
+        }
+
+        static int indexOfThird(float thirdAggregate, Student[] studentDetails, int studentCounter)
+        {
+            int index = 0;
+            for (int i = 0; i < studentCounter; i++)
+            {
+                if (thirdAggregate == studentDetails[i].aggregate)
+                {
+                    index = i;
+                }
+            }
+            return index;
+
+        }
+
+        // it displays the info of the position holders
+
+        static void DisplayPositionHolders(Student[] studentDetails, int first,int second,int third)
+        {
+            Console.WriteLine("Index \t\t Name \t\t Matric Marks \t\t Fsc Marks \t\t ECAT Marks \t\t Aggregate");
+            Console.WriteLine(1 + "\t\t" + studentDetails[first].sname + "\t\t\t" + studentDetails[first].matricMarks + "\t\t\t" + studentDetails[first].fscMarks + "\t\t\t" + studentDetails[first].ecatMarks + "\t\t\t" + studentDetails[first].aggregate);
+            Console.WriteLine(2 + "\t\t" + studentDetails[second].sname + "\t\t\t" + studentDetails[second].matricMarks + "\t\t\t" + studentDetails[second].fscMarks + "\t\t\t" + studentDetails[second].ecatMarks + "\t\t\t" + studentDetails[second].aggregate);
+            Console.WriteLine(3 + "\t\t" + studentDetails[third].sname + "\t\t\t" + studentDetails[third].matricMarks + "\t\t\t" + studentDetails[third].fscMarks + "\t\t\t" + studentDetails[third].ecatMarks + "\t\t\t" + studentDetails[third].aggregate);
+
+
+
+
+        }
+
+    }
+
+        class Student
+    {
+        public Student(string name, float matric, float fsc, float ecat)
+        {
+            sname = name;
+            matricMarks = matric;
+            fscMarks = fsc;
+            ecatMarks = ecat;
+        }
+        
+
+        public string sname;
+        public float matricMarks;
+        public float fscMarks;
+        public float ecatMarks;
+        public float aggregate;
+
+    }
+}
