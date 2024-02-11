@@ -61,6 +61,7 @@ namespace TASK4
             {
                 QuantityInStock += additionalCopies;
                 Console.WriteLine($"{additionalCopies} copies of {Title} added to stock.");
+                //restock
             }
 
             public string BookDetails()
