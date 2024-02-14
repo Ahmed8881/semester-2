@@ -3,139 +3,197 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace TASK4
+using System.Threading;
+using EZInput;
+namespace task02pd
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            List<Book> bookList = new List<Book>();
-
+            char direction1 = 'r';
+            char direction2 = 'r';
+            char direction3 = 'r';
+            char[,] board = new char[10, 40];
+            Player player = new Player('P', 20, 8);
+            Enemy enemy1 = new Enemy('e', 2, 2);
+            Enemy enemy2 = new Enemy('x', 17, 2);
+            Enemy enemy3 = new Enemy('n', 30, 2);
+            Thread.Sleep(150);
+            string[] boardRows = {
+    "#######################################",
+    "#                                     #",
+    "#                                     #",
+    "#                                     #",
+    "#                                     #",
+    "#                                     #",
+    "#                                     #",
+    "#                                     #",
+    "#                                     #",
+    "#######################################"
+};
+            for (int i = 0; i < boardRows.Length; i++)
+            {
+                for (int j = 0; j < boardRows[i].Length; j++)
+                {
+                    board[i, j] = boardRows[i][j];
+                }
+            }
+            board[player.pY, player.pX] = player.playerchar;
+            board[enemy1.eY, enemy1.eX] = enemy1.enemychar;
+            board[enemy2.eY, enemy2.eX] = enemy2.enemychar;
+            board[enemy3.eY, enemy3.eX] = enemy3.enemychar;
+            Console.Clear();
+            printboard(board);
             while (true)
             {
+                Thread.Sleep(150);
+                if (Keyboard.IsKeyPressed(Key.LeftArrow))
+                {
+                    moveplayerleft(player,board);
+                }
+                if (Keyboard.IsKeyPressed(Key.RightArrow))
+                {
+                    moveplayerright(player,board);
+                }
+                if (enemystrike(enemy1, board, direction1))
+                {
+                    if (direction1 == 'l')
+                        direction1 = 'r';
+                    else if (direction1 == 'r')
+                        direction1 = 'l';
+                }
+
+                if (enemystrike(enemy2, board, direction2))
+                {
+                    if (direction2 == 'l')
+                        direction2 = 'r';
+                    else if (direction2 == 'r')
+                        direction2 = 'l';
+                }
+                if (enemystrike(enemy3, board, direction3))
+                {
+                    if (direction3 == 'l')
+                        direction3 = 'r';
+                    else if (direction3 == 'r')
+                        direction3 = 'l';
+                }
+                moveenemy(enemy1,board, direction1);
+                moveenemy(enemy2,board, direction2);
+                moveenemy(enemy3,board, direction3);
                 Console.Clear();
-                Console.WriteLine("Menu Options:");
-                Console.WriteLine("1. Add Book");
-                Console.WriteLine("2. View All the Books information");
-                Console.WriteLine("3. Get the Author details of a specific book");
-                Console.WriteLine("4. Sell Copies of a Specific Book");
-                Console.WriteLine("5. Restock a Specific Book");
-                Console.WriteLine("6. See the count of the Books present in your bookList");
-                Console.WriteLine("7. Exit");
-
-                Console.Write("Enter your choice: ");
-                int choice = int.Parse(Console.ReadLine());
-
-                if (choice == 1)
-                {
-                    Console.Write("Enter the title: ");
-                    string title = Console.ReadLine();
-                    Console.Write("Enter the author: ");
-                    string author = Console.ReadLine();
-                    Console.Write("Enter the publication year: ");
-                    int publicationYear = int.Parse(Console.ReadLine());
-                    Console.Write("Enter the price: ");
-                    double price = Convert.ToDouble(Console.ReadLine());
-                    Console.Write("Enter the quantity in stock: ");
-                    int quantityInStock = int.Parse(Console.ReadLine());
-
-                    Book newBook = new Book(title, author, publicationYear, price, quantityInStock);
-                    bookList.Add(newBook);
-                    Console.WriteLine("Book added successfully.");
-                }
-                else if (choice == 2)
-                {
-                    Console.WriteLine("Book Information:");
-                    foreach (Book book in bookList)
-                    {
-                        Console.WriteLine(book.BookDetails());
-                        Console.WriteLine();
-                    }
-                }
-                else if (choice == 3)
-                {
-                    Console.Write("Enter the title of the book: ");
-                    string searchTitle = Console.ReadLine();
-                    bool found = false;
-
-                    foreach (Book book in bookList)
-                    {
-                        if (book.Title.Contains(searchTitle))
-                        {
-                            Console.WriteLine(book.GetAuthor());
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found)
-                    {
-                        Console.WriteLine("Book not found.");
-                    }
-                }
-                else if (choice == 4)
-                {
-                    Console.Write("Enter the title of the book: ");
-                    string sellTitle = Console.ReadLine();
-                    bool foundBook = false;
-
-                    foreach (Book book in bookList)
-                    {
-                        if (book.Title.Contains(sellTitle))
-                        {
-                            Console.Write("Enter the number of copies to sell: ");
-                            int numberOfCopies = int.Parse(Console.ReadLine());
-                            book.SellCopies(numberOfCopies);
-                            foundBook = true;
-                            break;
-                        }
-                    }
-
-                    if (!foundBook)
-                    {
-                        Console.WriteLine("Book not found.");
-                    }
-                }
-                else if (choice == 5)
-                {
-                    Console.Write("Enter the title of the book: ");
-                    string restockTitle = Console.ReadLine();
-                    bool foundBookToRestock = false;
-
-                    foreach (Book book in bookList)
-                    {
-                        if (book.Title.Contains(restockTitle))
-                        {
-                            Console.Write("Enter the number of copies to restock: ");
-                            int additionalCopies = int.Parse(Console.ReadLine());
-                            book.Restock(additionalCopies);
-                            foundBookToRestock = true;
-                            break;
-                        }
-                    }
-
-                    if (!foundBookToRestock)
-                    {
-                        Console.WriteLine("Book not found.");
-                    }
-                }
-                else if (choice == 6)
-                {
-                    Console.WriteLine($"Number of books in the list: {bookList.Count}");
-                }
-                else if (choice == 7)
-                {
-                    Console.WriteLine("Exiting the program...");
-                    return;
-                }
-                else 
-                {
-                    Console.WriteLine("Invalid choice. Please try again.");
-                }
-
-                Console.WriteLine();
+                printboard(board);
             }
+        }
+        static void printboard(char[,] board)
+        {
+            string print = "";
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 40; j++)
+                {
+                    print += board[i, j];
+                }
+                print += "\n";
+            }
+            Console.Write(print);
+        }
+        static void moveplayerright(Player player,char[,] board)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 40; j++)
+                {
+                    if (board[i, j] == player.playerchar)
+                    {
+                        board[i, j] = ' ';
+                        if (j < 37)
+                        {
+                            board[i, j + 1] = player.playerchar;
+                        }
+                        else
+                        {
+                            board[i, j] = player.playerchar;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        static void moveplayerleft(Player player, char[,] board)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 40; j++)
+                {
+                    if (board[i, j] == player.playerchar)
+                    {
+                        board[i, j] = ' ';
+                        if (j > 1)
+                        {
+                            board[i, j - 1] = player.playerchar;
+                        }
+                        else
+                        {
+                            board[i, j] = player.playerchar;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        static void moveenemy(Enemy enemy,char[,] board, char direction)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 40; j++)
+                {
+                    if (board[i, j] == enemy.enemychar)
+                    {
+                        board[i, j] = ' ';
+                        if (direction == 'l')
+                        { 
+                            board[i, j - 1] = enemy.enemychar;
+                        }
+                        else if (direction == 'r')
+                        {
+                            board[i, j + 1] = enemy.enemychar;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        static bool enemystrike(Enemy enemy,char[,] board, char direction)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 40; j++)
+                {
+                    if (board[i, j] == enemy.enemychar)
+                    {
+                        if (direction == 'l')
+                        {
+                            if (board[i, j - 1] == ' ')
+                                return false;
+                            else
+                                return true;
+                        }
+                        else if (direction == 'r')
+                        {
+                            if (board[i, j + 1] == ' ')
+                                return false;
+                            else
+                                return true;
+                        }
+                        break;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
+
+
+
