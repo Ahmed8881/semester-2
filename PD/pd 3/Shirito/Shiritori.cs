@@ -1,55 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace Shiritori
+namespace Task3_PDWeek3_
 {
-    internal class Shiritori
+    internal class Program
     {
-        private List<string> words;
-        private bool game_over;
 
-        public Shiritori()
+        static void Main(string[] args)
         {
-            words = new List<string>();
-            game_over = false;
-        }
-
-        public bool Play(string word)
-        {
-            if (game_over)
+            string word;
+            Console.WriteLine("\t\t\t\t SHRITORI GAME");
+            shritori g1 = new shritori();
+            while (true)
             {
-                Console.WriteLine("Game over!");
-                return false;
+                Console.Write("Enter the word: ");
+                word = Console.ReadLine();
+                Console.WriteLine(string.Join(", ", (string[])g1.play(word)));
+                if (g1.game_over)
+                {
+                    Console.Write("\n\n");
+                    Console.Write(g1.restart());
+                    Console.WriteLine("\n\n Press any key to restart.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
             }
-
-            if (!words.Contains(word))
-            {
-                words.Add(word);
-                Console.WriteLine($"Valid play! Current words: [{string.Join(", ", words)}]");
-                return true;
-            }
-            if (words.Count == 0 || (!words.Contains(word) && words[words.Count - 1][words[words.Count - 1].Length - 1] == word[0]))
-            {
-                words.Add(word);
-                Console.WriteLine($"Valid play! Current words: [{string.Join(", ", words)}]");
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("Invalid play!");
-                return false;
-            }
-
-        }
-
-        public string Restart()
-        {
-            words.Clear();
-            game_over = false;
-            return "Game restarted!";
         }
     }
 }
