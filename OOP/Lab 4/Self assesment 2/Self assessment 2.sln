@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Self assessment 2", "Self assessment 2.csproj", "{2F1BFE06-4518-4E60-9380-EEF92743484B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F1BFE06-4518-4E60-9380-EEF92743484B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F1BFE06-4518-4E60-9380-EEF92743484B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F1BFE06-4518-4E60-9380-EEF92743484B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F1BFE06-4518-4E60-9380-EEF92743484B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9689CCC-581F-4138-A1C9-3A7D72290D52}
+	EndGlobalSection
+EndGlobal
