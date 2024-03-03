@@ -48,3 +48,6 @@
 --16
 --SELECT salary FROM Employee
 --WHERE salary*0.25>3000;
+--17
+--SELECT emp_name FROM Employee
+--Where LEN(emp_name)=6;
