@@ -30,3 +30,6 @@
 --FROM  Department d JOIN 
 --Employee j
 --ON d.dep_id=j.commission
+--11
+--SELECT * FROM Employee WHERE
+--dep_id<>2001;
