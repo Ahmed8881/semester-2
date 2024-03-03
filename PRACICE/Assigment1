@@ -69,3 +69,5 @@
 --SELECT emp_name,job_name,salary
 --FROM Employee WHERE job_name='Analyst';
 --24
+SELECT * FROM Employee 
+--WHERE YEAR(hire_date)=1991;
