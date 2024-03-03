@@ -83,5 +83,12 @@ SELECT * FROM Employee
 --manager_id IS NULL OR manager_id ='';
 ----27
 -SELECT * FROM Employee WHERE
+--SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
+--AS Experience FROM Employee 
+--WHERE salary/30>100;
+----30
+--SELECT emp_name FROM Employee
+--WHERE DATEDIFF(YEAR,hire_date,'1999-12-31') >= 8;
+--31
 --hire_date='1991-05-01';
 --28
