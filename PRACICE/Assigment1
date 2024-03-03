@@ -59,3 +59,6 @@
 --Employee e2 ON e1.manager_id=e2.manager_id;
 --20
 ---SELECT * FROM Employee WHERE job_name='CLERK';
+-21
+--SELECT * FROM Employee
+--WHERE 2024-YEAR(hire_date)>27;
