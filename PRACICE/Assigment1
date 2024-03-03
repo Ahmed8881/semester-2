@@ -51,3 +51,6 @@
 --17
 --SELECT emp_name FROM Employee
 --Where LEN(emp_name)=6;
+--18
+--SELECT * FROM Employee Where MONTH(hire_date)='1'
+--19
