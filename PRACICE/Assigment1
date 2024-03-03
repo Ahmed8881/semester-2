@@ -71,3 +71,7 @@
 --24
 SELECT * FROM Employee 
 --WHERE YEAR(hire_date)=1991;
+--25
+--SELECT emp_id,emp_name,hire_date,salary
+--FROM Employee WHERE hire_date<'1991-04-01';
+--26
