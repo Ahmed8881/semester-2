@@ -65,3 +65,7 @@
 -22
 --SELECT * FROM Employee
 --WHERE salary<3500;
+--23
+--SELECT emp_name,job_name,salary
+--FROM Employee WHERE job_name='Analyst';
+--24
