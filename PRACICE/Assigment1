@@ -10,3 +10,8 @@
 -5
 --SELECT CONCAT(emp_name,'&',job_name)
 --AS Employee_Job
+--FROM Employee;
+--6
+--SELECT CONCAT(emp_name,'(',job_name,')')
+--AS Employee
+--FROM Employee
