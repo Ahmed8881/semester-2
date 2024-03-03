@@ -58,3 +58,4 @@
 --e2.emp_name) relation FROM Employee e1 Join
 --Employee e2 ON e1.manager_id=e2.manager_id;
 --20
+---SELECT * FROM Employee WHERE job_name='CLERK';
