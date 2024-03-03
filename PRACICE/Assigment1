@@ -77,6 +77,9 @@ SELECT * FROM Employee
 --26
 --SELECT emp_name,job_name
 --FROM Employee WHERE 
+--SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
+-- EXPERIENCE FROM Employee WHERE emp_id=68319
+----29
 --manager_id IS NULL OR manager_id ='';
 ----27
 -SELECT * FROM Employee WHERE
