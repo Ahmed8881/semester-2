@@ -15,3 +15,9 @@
 --SELECT CONCAT(emp_name,'(',job_name,')')
 --AS Employee
 --FROM Employee
+--7
+--SELECT emp_id, 
+--       emp_name, 
+--       salary, 
+--       FORMAT(hire_date, 'MMMM dd, yyyy') AS formatted_hire_date
+--FROM Employee;
