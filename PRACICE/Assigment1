@@ -54,3 +54,7 @@
 --18
 --SELECT * FROM Employee Where MONTH(hire_date)='1'
 --19
+--SELECT CONCAT(e1.emp_name,'works for',
+--e2.emp_name) relation FROM Employee e1 Join
+--Employee e2 ON e1.manager_id=e2.manager_id;
+--20
