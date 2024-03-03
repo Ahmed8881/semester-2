@@ -23,3 +23,6 @@
 --FROM Employee;
 --8
 --SELECT LEN(REPLACE(emp_name,'','')) FROM Employee
+--9
+--SELECT emp_id, salary,commission FROM Employee
+--10
