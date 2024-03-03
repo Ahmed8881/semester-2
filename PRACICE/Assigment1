@@ -21,3 +21,5 @@
 --       salary, 
 --       FORMAT(hire_date, 'MMMM dd, yyyy') AS formatted_hire_date
 --FROM Employee;
+--8
+--SELECT LEN(REPLACE(emp_name,'','')) FROM Employee
