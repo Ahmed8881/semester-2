@@ -26,3 +26,7 @@
 --9
 --SELECT emp_id, salary,commission FROM Employee
 --10
+--SELECT d.dep_id A,j.job_name 
+--FROM  Department d JOIN 
+--Employee j
+--ON d.dep_id=j.commission
