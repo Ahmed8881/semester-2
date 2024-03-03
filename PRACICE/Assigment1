@@ -45,3 +45,6 @@
 --15
 --SELECT * FROM Employee
 --Where salary<commission;
+--16
+--SELECT salary FROM Employee
+--WHERE salary*0.25>3000;
