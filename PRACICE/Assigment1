@@ -2,3 +2,5 @@
 --SELECT * FROM Employee;
 --2
 --SELECT salary FROM Employee;
+--3
+--SELECT DISTINCT job_name FROM Employee;
