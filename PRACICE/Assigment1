@@ -1,2 +1,4 @@
 --1
 --SELECT * FROM Employee;
+--2
+--SELECT salary FROM Employee;
