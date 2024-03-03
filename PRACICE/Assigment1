@@ -62,3 +62,6 @@
 -21
 --SELECT * FROM Employee
 --WHERE 2024-YEAR(hire_date)>27;
+-22
+--SELECT * FROM Employee
+--WHERE salary<3500;
