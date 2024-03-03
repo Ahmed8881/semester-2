@@ -39,3 +39,6 @@
 --13
 --SELECT AVG(salary) FROM Employee
 --WHERE job_name='analyst';
+--14
+--SELECT * FROM Employee
+--WHERE emp_name='blaze';
