@@ -79,3 +79,6 @@ SELECT * FROM Employee
 --FROM Employee WHERE 
 --manager_id IS NULL OR manager_id ='';
 ----27
+-SELECT * FROM Employee WHERE
+--hire_date='1991-05-01';
+--28
