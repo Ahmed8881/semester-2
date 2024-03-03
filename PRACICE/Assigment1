@@ -42,3 +42,6 @@
 --14
 --SELECT * FROM Employee
 --WHERE emp_name='blaze';
+--15
+--SELECT * FROM Employee
+--Where salary<commission;
