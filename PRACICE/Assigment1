@@ -75,3 +75,7 @@ SELECT * FROM Employee
 --SELECT emp_id,emp_name,hire_date,salary
 --FROM Employee WHERE hire_date<'1991-04-01';
 --26
+--SELECT emp_name,job_name
+--FROM Employee WHERE 
+--manager_id IS NULL OR manager_id ='';
+----27
