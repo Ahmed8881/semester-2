@@ -33,3 +33,6 @@
 --11
 --SELECT * FROM Employee WHERE
 --dep_id<>2001;
+--12
+--SELECT * FROM Employee
+--Where YEAR(hire_date)<1991;
