@@ -36,3 +36,6 @@
 --12
 --SELECT * FROM Employee
 --Where YEAR(hire_date)<1991;
+--13
+--SELECT AVG(salary) FROM Employee
+--WHERE job_name='analyst';
