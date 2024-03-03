@@ -7,3 +7,6 @@
 --4
 --SELECT emp_name,CONCAT('$',salary*0.15) 
 --AS number_of_dollars FROM Employee;
+-5
+--SELECT CONCAT(emp_name,'&',job_name)
+--AS Employee_Job
