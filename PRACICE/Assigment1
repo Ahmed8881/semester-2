@@ -92,3 +92,6 @@ SELECT * FROM Employee
 --31
 --hire_date='1991-05-01';
 --28
+--SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
+-- EXPERIENCE FROM Employee WHERE emp_id=68319
+----29
