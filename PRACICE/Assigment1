@@ -111,3 +111,5 @@ SELECT * FROM Employee
 --SELECT * from Employee 
 --WHERE MONTH(hire_date)='04';
 ----34
+--SELECT * FROM Employee
+--Where DAY(hire_date)<19;
