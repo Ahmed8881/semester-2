@@ -95,3 +95,7 @@ SELECT * FROM Employee
 --SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
 -- EXPERIENCE FROM Employee WHERE emp_id=68319
 ----29
+-SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
+--AS Experience FROM Employee 
+--WHERE salary/30>100;
+----30
