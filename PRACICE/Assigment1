@@ -102,3 +102,6 @@ SELECT * FROM Employee
 --SELECT emp_name FROM Employee
 --WHERE DATEDIFF(YEAR,hire_date,'1999-12-31') >= 8;
 --31
+--SELECT * FROM Employee
+--WHERE salary%2<>0;
+----32
