@@ -99,3 +99,6 @@ SELECT * FROM Employee
 --AS Experience FROM Employee 
 --WHERE salary/30>100;
 ----30
+--SELECT emp_name FROM Employee
+--WHERE DATEDIFF(YEAR,hire_date,'1999-12-31') >= 8;
+--31
