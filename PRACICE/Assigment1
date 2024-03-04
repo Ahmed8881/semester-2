@@ -105,3 +105,6 @@ SELECT * FROM Employee
 --SELECT * FROM Employee
 --WHERE salary%2<>0;
 ----32
+--SELECT * FROM Employee
+--WHERE salary<999 AND salary>100;
+--33
