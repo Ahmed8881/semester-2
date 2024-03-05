@@ -1,1 +1,116 @@
 
+--1
+--SELECT * FROM Employee;
+--2
+--SELECT salary FROM Employee;
+--3
+--SELECT DISTINCT job_name FROM Employee;
+--4
+--SELECT emp_name,CONCAT('$',salary*0.15) 
+--AS number_of_dollars FROM Employee;
+-5
+--SELECT CONCAT(emp_name,'&',job_name)
+--AS Employee_Job
+--FROM Employee;
+--6
+--SELECT CONCAT(emp_name,'(',job_name,')')
+--AS Employee
+--FROM Employee
+--7
+--SELECT emp_id, 
+--       emp_name, 
+--       salary, 
+--       FORMAT(hire_date, 'MMMM dd, yyyy') AS formatted_hire_date
+--FROM Employee;
+--8
+--SELECT LEN(REPLACE(emp_name,'','')) FROM Employee
+--9
+--SELECT emp_id, salary,commission FROM Employee
+--10
+--SELECT d.dep_id A,j.job_name 
+--FROM  Department d JOIN 
+--Employee j
+--ON d.dep_id=j.commission
+--11
+--SELECT * FROM Employee WHERE
+--dep_id<>2001;
+--12
+--SELECT * FROM Employee
+--Where YEAR(hire_date)<1991;
+--13
+--SELECT AVG(salary) FROM Employee
+--WHERE job_name='analyst';
+--14
+--SELECT * FROM Employee
+--WHERE emp_name='blaze';
+--15
+--SELECT * FROM Employee
+--Where salary<commission;
+--16
+--SELECT salary FROM Employee
+--WHERE salary*0.25>3000;
+--17
+--SELECT emp_name FROM Employee
+--Where LEN(emp_name)=6;
+--18
+--SELECT * FROM Employee Where MONTH(hire_date)='1'
+--19
+--SELECT CONCAT(e1.emp_name,'works for',
+--e2.emp_name) relation FROM Employee e1 Join
+--Employee e2 ON e1.manager_id=e2.manager_id;
+--20
+---SELECT * FROM Employee WHERE job_name='CLERK';
+-21
+--SELECT * FROM Employee
+--WHERE 2024-YEAR(hire_date)>27;
+-22
+--SELECT * FROM Employee
+--WHERE salary<3500;
+--23
+--SELECT emp_name,job_name,salary
+--FROM Employee WHERE job_name='Analyst';
+--24
+SELECT * FROM Employee 
+--WHERE YEAR(hire_date)=1991;
+--25
+--SELECT emp_id,emp_name,hire_date,salary
+--FROM Employee WHERE hire_date<'1991-04-01';
+--26
+--SELECT emp_name,job_name
+--FROM Employee WHERE 
+--SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
+-- EXPERIENCE FROM Employee WHERE emp_id=68319
+----29
+--manager_id IS NULL OR manager_id ='';
+----27
+-SELECT * FROM Employee WHERE
+--SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
+--AS Experience FROM Employee 
+--WHERE salary/30>100;
+----30
+--SELECT emp_name FROM Employee
+--WHERE DATEDIFF(YEAR,hire_date,'1999-12-31') >= 8;
+--31
+--hire_date='1991-05-01';
+--28
+--SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
+-- EXPERIENCE FROM Employee WHERE emp_id=68319
+----29
+-SELECT emp_id,emp_name,salary,DATEDIFF(YEAR,hire_date,GETDATE())
+--AS Experience FROM Employee 
+--WHERE salary/30>100;
+----30
+--SELECT emp_name FROM Employee
+--WHERE DATEDIFF(YEAR,hire_date,'1999-12-31') >= 8;
+--31
+--SELECT * FROM Employee
+--WHERE salary%2<>0;
+----32
+--SELECT * FROM Employee
+--WHERE salary<999 AND salary>100;
+--33
+--SELECT * from Employee 
+--WHERE MONTH(hire_date)='04';
+----34
+--SELECT * FROM Employee
+--Where DAY(hire_date)<19;
