@@ -133,3 +133,8 @@ SELECT * FROM Employee
 
 -- -- 38
 
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE job_name = 'CLERK' AND dep_id = 2001;
+
+-- -- 39
