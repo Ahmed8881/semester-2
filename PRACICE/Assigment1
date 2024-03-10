@@ -185,3 +185,8 @@ SELECT * FROM Employee
 --     AND MONTH(hire_date) > 6;
 
 -- -- 48
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE YEAR(hire_date) BETWEEN 1990 AND 1999;
+
+-- -- 49
