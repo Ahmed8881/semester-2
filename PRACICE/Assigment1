@@ -190,3 +190,12 @@ SELECT * FROM Employee
 -- WHERE YEAR(hire_date) BETWEEN 1990 AND 1999;
 
 -- -- 49
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE job_name = 'MANAGER'
+--     AND dep_id IN (1001,2001);
+
+-- -- 50
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE MONTH(hire_date) = 2 AND salary BETWEEN 1001 AND 2000;
