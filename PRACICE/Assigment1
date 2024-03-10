@@ -170,3 +170,12 @@ SELECT * FROM Employee
 -- WHERE salary * 12 BETWEEN 24000 AND 50000;
 
 -- -- 45
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE hire_date IN ('1991-02-20','1991-05-01','1991-12-03');
+
+-- -- 46
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE manager_id IN (63679, 68319, 66564,69000);
+
