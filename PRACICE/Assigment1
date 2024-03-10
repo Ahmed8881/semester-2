@@ -178,4 +178,10 @@ SELECT * FROM Employee
 -- SELECT *
 -- FROM dbo.Employee
 -- WHERE manager_id IN (63679, 68319, 66564,69000);
+-- -- 47
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE YEAR(hire_date) = 1991
+--     AND MONTH(hire_date) > 6;
 
+-- -- 48
