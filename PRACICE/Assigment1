@@ -109,6 +109,7 @@ SELECT * FROM Employee
 --SELECT * FROM Employee
 --WHERE salary<999 AND salary>100;
 --33
+
 --SELECT * from Employee 
 --WHERE MONTH(hire_date)='04';
 ----34
