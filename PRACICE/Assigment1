@@ -122,3 +122,8 @@ SELECT * FROM Employee
 -- WHERE job_name = 'SALESMAN' AND DATEDIFF(MONTH,hire_date,GETDATE())/12 > 10;    
 
 -- -- 36
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE YEAR(hire_date) = 1991 AND (dep_id = 3001 or dep_id = 1001);
+
+-- -- 37 
