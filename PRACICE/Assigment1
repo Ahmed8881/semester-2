@@ -149,3 +149,8 @@ SELECT * FROM Employee
 -- WHERE job_name = 'CLERK' OR job_name = 'MANAGER';
 
 -- -- 41
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE MONTH(hire_date) <> 2;
+
+-- -- 42
