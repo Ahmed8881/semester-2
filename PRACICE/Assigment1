@@ -116,3 +116,9 @@ SELECT * FROM Employee
 --SELECT * FROM Employee
 --Where DAY(hire_date)<19;
 
+-- -- 35
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE job_name = 'SALESMAN' AND DATEDIFF(MONTH,hire_date,GETDATE())/12 > 10;    
+
+-- -- 36
