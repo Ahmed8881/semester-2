@@ -159,3 +159,9 @@ SELECT * FROM Employee
 -- WHERE YEAR(hire_date) = 1991;
 
 -- -- 43
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE MONTH(hire_date) = 6
+--     AND YEAR(hire_date) = 1991;
+
+-- -- 44
