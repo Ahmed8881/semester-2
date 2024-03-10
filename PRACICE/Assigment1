@@ -127,3 +127,9 @@ SELECT * FROM Employee
 -- WHERE YEAR(hire_date) = 1991 AND (dep_id = 3001 or dep_id = 1001);
 
 -- -- 37 
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE dep_id = 1001 or dep_id = 2001;
+
+-- -- 38
+
