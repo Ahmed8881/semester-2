@@ -138,3 +138,9 @@ SELECT * FROM Employee
 -- WHERE job_name = 'CLERK' AND dep_id = 2001;
 
 -- -- 39
+-- SELECT emp_id, emp_name, salary, job_name
+-- FROM dbo.Employee
+-- WHERE (salary > commission AND (salary + commission) * 12 < 34000)
+--     OR (job_name = 'SALESMAN' AND dep_id = 3001);
+
+-- -- 40
