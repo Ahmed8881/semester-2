@@ -165,3 +165,8 @@ SELECT * FROM Employee
 --     AND YEAR(hire_date) = 1991;
 
 -- -- 44
+-- SELECT *
+-- FROM dbo.Employee
+-- WHERE salary * 12 BETWEEN 24000 AND 50000;
+
+-- -- 45
