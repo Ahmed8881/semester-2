@@ -6,6 +6,7 @@
 --3
 --SELECT DISTINCT job_name FROM Employee;
 --4
+
 --SELECT emp_name,CONCAT('$',salary*0.15) 
 --AS number_of_dollars FROM Employee;
 -5
