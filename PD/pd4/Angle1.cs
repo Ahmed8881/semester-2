@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ocean_Navigation
 {
+    
     internal class Angle1
     {
         public int degree;
