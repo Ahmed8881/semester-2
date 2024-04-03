@@ -11,7 +11,7 @@ namespace task02pd
         public char enemychar;
         public int eX;
         public int eY;
-       public Enemy(char echaracter, int ex, int ey)
+       public Enemy(char echaracter, int ex, int ey)//constructor
         {
             this.enemychar = echaracter;
             this.eX = ex;
