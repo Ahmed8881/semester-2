@@ -17,7 +17,7 @@ namespace Challenge_3
             int userCount = 0;
             // object array of user data
             Muser[] users = new Muser[30];
-            // this function loads the data from the file
+           
             retrieveFile(users, ref userCount);
 
             while (true) 
